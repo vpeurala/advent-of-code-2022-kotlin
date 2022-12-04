@@ -6,6 +6,19 @@ object Day3 {
         val rucksacks = lines.map { Rucksack(it) }
         return rucksacks.sumOf { priority(it.itemWhichExistsInBothCompartments) }
     }
+
+    fun part2(): Int {
+        val lines = Util.inputLines("/day3.txt")
+        val elfGroups = lines.windowed(3, 3)
+        return elfGroups.sumOf {
+            priority(commonLetter(it))
+        }
+    }
+
+    private fun commonLetter(it: List<String>): Char =
+        it.fold(it.joinToString(separator = "").toSet()) { acc: Set<Char>, cur: String ->
+            acc.intersect(cur.toSet())
+        }.first()
 }
 
 fun halveString(input: String): Pair<String, String> {
