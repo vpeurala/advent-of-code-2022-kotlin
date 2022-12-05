@@ -66,7 +66,7 @@ object Day5 : Day<String> {
     override fun part1(inputResourcePath: String): String {
         val stacksBeforeMoves = parseStacks(inputLines(inputResourcePath))
         val moves = parseMoves(inputLines(inputResourcePath))
-        val stacksAfterMoves: CrateStacks = moves.fold(stacksBeforeMoves) { acc, cur ->
+        val stacksAfterMoves = moves.fold(stacksBeforeMoves) { acc, cur ->
             CrateMover9000.executeMoveOnCrateStacks(cur, acc)
         }
         return stacksAfterMoves.topCrates()
@@ -75,7 +75,7 @@ object Day5 : Day<String> {
     override fun part2(inputResourcePath: String): String {
         val stacksBeforeMoves = parseStacks(inputLines(inputResourcePath))
         val moves = parseMoves(inputLines(inputResourcePath))
-        val stacksAfterMoves: CrateStacks = moves.fold(stacksBeforeMoves) { acc, cur ->
+        val stacksAfterMoves = moves.fold(stacksBeforeMoves) { acc, cur ->
             CrateMover9001.executeMoveOnCrateStacks(cur, acc)
         }
         return stacksAfterMoves.topCrates()
