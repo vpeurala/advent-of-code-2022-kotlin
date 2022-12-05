@@ -4,7 +4,10 @@ object Day6 : Day<Int> {
     override val number: Int = 6
 
     // TODO: Implement
-    override fun part1(inputResourcePath: String): Int = 123
+    override fun part1(inputResourcePath: String): Int {
+        val lines = Util.inputLines(inputResourcePath)
+        return 123
+    }
 
     // TODO: Implement
     override fun part2(inputResourcePath: String): Int = 456
