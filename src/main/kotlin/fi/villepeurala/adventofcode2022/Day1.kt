@@ -16,5 +16,5 @@ object Day1 : Day<Int> {
         return top3Groups.sumOf { it.sum() }
     }
 
-    private fun elves(inputResourcePath: String) = groupedByBlanks(inputLines("/day1.txt")) { it.toInt() }
+    private fun elves(inputResourcePath: String) = groupedByBlanks(inputLines(inputResourcePath)) { it.toInt() }
 }
