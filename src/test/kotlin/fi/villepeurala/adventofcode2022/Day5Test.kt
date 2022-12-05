@@ -5,6 +5,18 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day5Test {
+    val example = """
+    [D]    
+[N] [C]    
+[Z] [M] [P]
+ 1   2   3 
+
+move 1 from 2 to 1
+move 3 from 1 to 3
+move 2 from 2 to 1
+move 1 from 1 to 2
+        """.trimIndent()
+
     @Test
     fun testParseColumns() {
         val original: String = """
@@ -19,7 +31,7 @@ class Day5Test {
  1   2   3   4   5   6   7   8   9
         """.trimIndent()
         val stacks = Day5.parseStacks(original.lines())
-        assertEquals(9, stacks.size())
+        assertEquals(9, stacks.size)
 
         val stack1 = stacks[1]
         assertEquals(1, stack1.id)
@@ -34,24 +46,24 @@ class Day5Test {
     }
 
     @Test
-    fun withExampleInput() {
-        val example = """
-    [D]    
-[N] [C]    
-[Z] [M] [P]
- 1   2   3 
-
-move 1 from 2 to 1
-move 3 from 1 to 3
-move 2 from 2 to 1
-move 1 from 1 to 2
-        """.trimIndent()
+    fun withExampleInputOnCrateMover9000() {
         val original = Day5.parseStacks(example.lines())
         assertEquals("NDP", original.topCrates())
         val moves = Day5.parseMoves(example.lines())
         val after = moves.fold(original) { acc, cur ->
-            acc.executeMove(cur)
+            CrateMover9000.executeMoveOnCrateStacks(cur, acc)
         }
         assertEquals("CMZ", after.topCrates())
+    }
+
+    @Test
+    fun withExampleInputOnCrateMover9001() {
+        val original = Day5.parseStacks(example.lines())
+        assertEquals("NDP", original.topCrates())
+        val moves = Day5.parseMoves(example.lines())
+        val after = moves.fold(original) { acc, cur ->
+            CrateMover9001.executeMoveOnCrateStacks(cur, acc)
+        }
+        assertEquals("MCD", after.topCrates())
     }
 }

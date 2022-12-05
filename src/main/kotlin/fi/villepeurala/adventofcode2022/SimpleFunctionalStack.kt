@@ -11,7 +11,9 @@ interface FunctionalStack<T> : Collection<T> {
 
     fun push(item: T): FunctionalStack<T>
 
-    fun pushMany(vararg ts: T): FunctionalStack<T>
+    fun extract(size: Int): Pair<List<T>, FunctionalStack<T>>
+
+    fun load(xs: List<T>): FunctionalStack<T>
 }
 
 class SimpleFunctionalStack<T> private constructor(override val size: Int, private val items: List<T>) :
@@ -42,8 +44,10 @@ class SimpleFunctionalStack<T> private constructor(override val size: Int, priva
         else -> Some(items.last())
     }
 
-    override fun pushMany(vararg ts: T): SimpleFunctionalStack<T> =
-        SimpleFunctionalStack(size + ts.size, items.plus(ts))
+    override fun extract(n: Int): Pair<List<T>, FunctionalStack<T>> =
+        items.takeLast(n) to SimpleFunctionalStack(this.size - n, items.dropLast(n))
+
+    override fun load(xs: List<T>): FunctionalStack<T> = SimpleFunctionalStack(this.size + xs.size, items.plus(xs))
 
     override fun equals(other: Any?): Boolean {
         return other is SimpleFunctionalStack<*> && other.size == this.size && other.items == this.items

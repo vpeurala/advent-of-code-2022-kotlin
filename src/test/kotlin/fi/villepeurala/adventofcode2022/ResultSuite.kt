@@ -3,7 +3,7 @@ package fi.villepeurala.adventofcode2022
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TestSuite {
+class ResultSuite {
     @Test
     fun day1Part1() {
         assertEquals(68292, Day1.part1())
@@ -47,5 +47,10 @@ class TestSuite {
     @Test
     fun day5Part1() {
         assertEquals("RLFNRTNFB", Day5.part1())
+    }
+
+    @Test
+    fun day5Part2() {
+        assertEquals("MHQTLJRLB", Day5.part2())
     }
 }

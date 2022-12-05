@@ -3,7 +3,6 @@ package fi.villepeurala.adventofcode2022
 import arrow.core.None
 import arrow.core.Option
 import arrow.core.Some
-import arrow.core.some
 import fi.villepeurala.adventofcode2022.SimpleFunctionalStack.Companion.emptyStack
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -44,22 +43,5 @@ class SimpleFunctionalStackTest {
         val peeked: Option<String> = t.peek()
         assertEquals(Some(x), peeked)
         assertEquals(1, t.size)
-    }
-
-    @Test
-    fun canBePushedToManyTimes() {
-        val a: SimpleFunctionalStack<Int> = emptyStack<Int>().pushMany(1, 2, 3, 4)
-        val (p, b) = a.pop()
-        assertEquals(4.some(), p)
-        val (pp, c) = b.pop()
-        assertEquals(3.some(), pp)
-        val (ppp, d) = c.pop()
-        assertEquals(2.some(), ppp)
-        val (pppp, e) = d.pop()
-        assertEquals(1.some(), pppp)
-        val (ppppp, f) = e.pop()
-        assertEquals(None, ppppp)
-        assertTrue { e.isEmpty() }
-        assertTrue { f.isEmpty() }
     }
 }
