@@ -120,7 +120,6 @@ object Day5 : Day<String> {
         )
 
     private fun toCrateStack(column: List<String>): CrateStack {
-        println("column: $column")
         val id = column.first()
         val crates = column.drop(1)
         val stack = SimpleFunctionalStack.emptyStack<Char>()
