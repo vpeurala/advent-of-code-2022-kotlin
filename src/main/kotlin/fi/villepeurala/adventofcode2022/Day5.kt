@@ -48,13 +48,15 @@ object CrateMover9001 : GiantCargoCrane() {
         val toStack = stacks[move.to]
         val (craneful, newFromStack) = fromStack.extract(move.amount)
         val newToStack = toStack.load(craneful)
-        return CrateStacks(stacks.map { stack ->
-            when (stack.id) {
-                fromStack.id -> CrateStack(fromStack.id, newFromStack)
-                toStack.id -> CrateStack(toStack.id, newToStack)
-                else -> stack
+        return CrateStacks(
+            stacks.map { stack ->
+                when (stack.id) {
+                    fromStack.id -> CrateStack(fromStack.id, newFromStack)
+                    toStack.id -> CrateStack(toStack.id, newToStack)
+                    else -> stack
+                }
             }
-        })
+        )
     }
 }
 
@@ -112,8 +114,10 @@ object Day5 : Day<String> {
      * Returns Pair(column, rest of lines).
      */
     private fun parseColumn(rev: List<String>): Pair<CrateStack, List<String>> =
-        Pair(toCrateStack(rev.map { it.take(4) }.map { it.trim() }.map { it.removeSurrounding("[", "]") }),
-            rev.map { it.drop(4) })
+        Pair(
+            toCrateStack(rev.map { it.take(4) }.map { it.trim() }.map { it.removeSurrounding("[", "]") }),
+            rev.map { it.drop(4) }
+        )
 
     private fun toCrateStack(column: List<String>): CrateStack {
         println("column: $column")
@@ -124,7 +128,6 @@ object Day5 : Day<String> {
         return CrateStack(id.toInt(), stack)
     }
 }
-
 
 data class CrateStack(val id: Int, val crates: FunctionalStack<Char>) : FunctionalStack<Char> by crates
 

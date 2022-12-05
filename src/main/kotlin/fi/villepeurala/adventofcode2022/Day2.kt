@@ -9,7 +9,6 @@ object Day2 : Day<Int> {
         val lines = inputLines(inputResourcePath)
         val rounds = lines.map { parseRoundDay1(it) }
         return rounds.sumOf { it.score() }
-
     }
 
     override fun part2(inputResourcePath: String): Int {
@@ -19,11 +18,13 @@ object Day2 : Day<Int> {
     }
 
     private fun parseRoundDay1(it: String) = Round(
-        RPS.fromABC(it.take(1)), RPS.fromXYZ(it.takeLast(1))
+        RPS.fromABC(it.take(1)),
+        RPS.fromXYZ(it.takeLast(1))
     )
 
     private fun parseRoundDay2(it: String) = roundFromExpectedResult(
-        RPS.fromABC(it.take(1)), GameResult.fromXYZ(it.takeLast(1))
+        RPS.fromABC(it.take(1)),
+        GameResult.fromXYZ(it.takeLast(1))
     )
 
     private fun roundFromExpectedResult(opponent: RPS, expectedResult: GameResult): Round =

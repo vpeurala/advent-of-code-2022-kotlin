@@ -34,7 +34,7 @@ fun halveString(input: String): Pair<String, String> {
 
 fun priority(input: Char): Int {
     return if (!input.isLetter()) {
-        throw IllegalArgumentException("Character '${input}' cannot be prioritized. It must be a letter.")
+        throw IllegalArgumentException("Character '$input' cannot be prioritized. It must be a letter.")
     } else {
         if (input.isLowerCase()) {
             input.code - 96

@@ -43,5 +43,3 @@ object Day4 : Day<Int> {
     private fun IntRange.containsAny(other: IntRange) =
         this.intersect(other).any()
 }
-
-
