@@ -43,4 +43,9 @@ class TestSuite {
     fun day4Part2() {
         assertEquals(907, Day4.part2())
     }
+
+    @Test
+    fun day5Part1() {
+        assertEquals("RLFNRTNFB", Day5.part1())
+    }
 }

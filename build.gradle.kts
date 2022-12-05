@@ -12,7 +12,10 @@ repositories {
     mavenCentral()
 }
 
+val arrowVersion = "1.1.3"
+
 dependencies {
+    implementation("io.arrow-kt:arrow-core:$arrowVersion")
     testImplementation(kotlin("test"))
 }
 

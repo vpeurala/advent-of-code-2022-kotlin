@@ -1,5 +1,9 @@
 package fi.villepeurala.adventofcode2022
 
+import arrow.core.Option
+import arrow.core.getOrElse
+import arrow.core.toOption
+
 object Util {
     fun inputLines(resourcePath: String): List<String> {
         val inputStream = javaClass.getResourceAsStream(resourcePath)
@@ -23,4 +27,10 @@ object Util {
         groups.add(currentGroup)
         return groups.toList()
     }
+
+    fun <T> T?.orDie(): T =
+        this.toOption().getOrElse { throw IllegalStateException("Function orDie() called on null.") }
+
+    fun <T> Option<T>.orDie(): T =
+        this.getOrElse { throw IllegalStateException("Function orDie() called on Option.None.") }
 }
