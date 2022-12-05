@@ -49,7 +49,7 @@ object CrateMover9001 : GiantCargoCrane() {
         val (craneful, newFromStack) = fromStack.extract(move.amount)
         val newToStack = toStack.load(craneful)
         return CrateStacks(
-            stacks.map { stack ->
+            stacks.items.map { stack ->
                 when (stack.id) {
                     fromStack.id -> CrateStack(fromStack.id, newFromStack)
                     toStack.id -> CrateStack(toStack.id, newToStack)
@@ -130,9 +130,11 @@ object Day5 : Day<String> {
 
 data class CrateStack(val id: Int, val crates: FunctionalStack<Char>) : FunctionalStack<Char> by crates
 
-data class CrateStacks(val items: List<CrateStack>) : List<CrateStack> by items {
+data class CrateStacks(val items: List<CrateStack>) {
+    val size = items.size
+
     fun topCrates(): String = items.map { it.crates.peek().getOrElse { " " } }.joinToString("")
 
-    override operator fun get(id: Int): CrateStack =
+    operator fun get(id: Int): CrateStack =
         items.find { it.id == id }.toOption().getOrElse { throw NoSuchElementException("Stack with id $id not found.") }
 }

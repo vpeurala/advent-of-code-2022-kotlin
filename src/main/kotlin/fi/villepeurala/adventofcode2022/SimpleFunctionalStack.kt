@@ -11,7 +11,7 @@ interface FunctionalStack<T> : Collection<T> {
 
     fun push(item: T): FunctionalStack<T>
 
-    fun extract(size: Int): Pair<List<T>, FunctionalStack<T>>
+    fun extract(n: Int): Pair<List<T>, FunctionalStack<T>>
 
     fun load(xs: List<T>): FunctionalStack<T>
 }
