@@ -1,14 +1,16 @@
 package fi.villepeurala.adventofcode2022
 
-object Day3 {
-    fun part1(): Int {
-        val lines = Util.inputLines("/day3.txt")
+object Day3 : Day<Int> {
+    override val number: Int = 3
+
+    override fun part1(inputResourcePath: String): Int {
+        val lines = Util.inputLines(inputResourcePath)
         val rucksacks = lines.map { Rucksack(it) }
         return rucksacks.sumOf { priority(it.itemWhichExistsInBothCompartments) }
     }
 
-    fun part2(): Int {
-        val lines = Util.inputLines("/day3.txt")
+    override fun part2(inputResourcePath: String): Int {
+        val lines = Util.inputLines(inputResourcePath)
         val elfGroups = lines.windowed(3, 3)
         return elfGroups.sumOf {
             priority(commonLetter(it))

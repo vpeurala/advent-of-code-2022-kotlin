@@ -2,15 +2,18 @@ package fi.villepeurala.adventofcode2022
 
 import fi.villepeurala.adventofcode2022.Util.inputLines
 
-object Day2 {
-    fun part1(): Int {
-        val lines = inputLines("/day2.txt")
+object Day2 : Day<Int> {
+    override val number: Int = 2
+
+    override fun part1(inputResourcePath: String): Int {
+        val lines = inputLines(inputResourcePath)
         val rounds = lines.map { parseRoundDay1(it) }
         return rounds.sumOf { it.score() }
+
     }
 
-    fun part2(): Int {
-        val lines = inputLines("/day2.txt")
+    override fun part2(inputResourcePath: String): Int {
+        val lines = inputLines(inputResourcePath)
         val rounds = lines.map { parseRoundDay2(it) }
         return rounds.sumOf { it.score() }
     }
