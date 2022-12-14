@@ -34,3 +34,18 @@ object Util {
     fun <T> Option<T>.orDie(): T =
         this.getOrElse { throw IllegalStateException("Function orDie() called on Option.None.") }
 }
+
+data class Coordinates2D(val x: Int, val y: Int) {
+    override fun toString(): String = "($x, $y)"
+}
+
+sealed interface Direction2D {
+    companion object {
+        fun clockwise() = listOf(Up, Right, Down, Left)
+    }
+}
+
+object Up : Direction2D
+object Right : Direction2D
+object Down : Direction2D
+object Left : Direction2D

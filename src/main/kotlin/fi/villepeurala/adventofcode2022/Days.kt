@@ -7,6 +7,8 @@ object Days {
         Day3 to mapOf(1 to 7817, 2 to 2444),
         Day4 to mapOf(1 to 567, 2 to 907),
         Day5 to mapOf(1 to "RLFNRTNFB", 2 to "MHQTLJRLB"),
-        Day6 to mapOf(1 to 1042, 2 to 2980)
+        Day6 to mapOf(1 to 1042, 2 to 2980),
+        // Day7 to mapOf(1 to 1, 2 to 2), // TODO
+        Day8 to mapOf(1 to 1690, 2 to 535680)
     )
 }
