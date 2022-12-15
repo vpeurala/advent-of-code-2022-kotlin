@@ -11,13 +11,13 @@ class TreeGrid(private val input: String) : Grid2D<Int> {
     val height = input.lines().size
 
     override fun get(coords: Coordinates2D): Int {
-        return input.lines()[coords.y][coords.x].digitToInt()
+        return input.lines()[coords.y.toInt()][coords.x.toInt()].digitToInt()
     }
 
     fun positions(): List<Pair<Coordinates2D, Int>> {
         return (0 until width).flatMap { x ->
             (0 until height).map { y ->
-                val coords = Coordinates2D(x, y)
+                val coords = Coordinates2D(x.toDouble(), y.toDouble())
                 val value = get(coords)
                 coords to value
             }
@@ -40,28 +40,28 @@ class TreeGrid(private val input: String) : Grid2D<Int> {
     }
 
     private fun viewFromRight(coords: Coordinates2D) =
-        row(coords.y).subList(coords.x + 1, this.width)
+        row(coords.y.toInt()).subList((coords.x + 1).toInt(), this.width)
 
-    private fun viewFromLeft(coords: Coordinates2D) = row(coords.y).subList(0, coords.x)
+    private fun viewFromLeft(coords: Coordinates2D) = row(coords.y.toInt()).subList(0, coords.x.toInt())
 
     private fun viewFromBottom(coords: Coordinates2D) =
-        column(coords.x).subList(coords.y + 1, this.height)
+        column(coords.x.toInt()).subList(coords.y.toInt() + 1, this.height)
 
     private fun viewFromTop(coords: Coordinates2D): List<Int> {
-        return column(coords.x).subList(0, coords.y)
+        return column(coords.x.toInt()).subList(0, coords.y.toInt())
     }
 
-    fun lineInDirection(centralTreeCoords: Coordinates2D, direction2D: Direction2D): List<Int> =
-        when (direction2D) {
-            Up -> column(centralTreeCoords.x).take(centralTreeCoords.y + 1).reversed()
-            Right -> row(centralTreeCoords.y).drop(centralTreeCoords.x)
-            Down -> column(centralTreeCoords.x).drop(centralTreeCoords.y)
-            Left -> row(centralTreeCoords.y).take(centralTreeCoords.x + 1).reversed()
+    fun lineInDirection(centralTreeCoords: Coordinates2D, direction: CardinalDirection2D): List<Int> =
+        when (direction) {
+            North -> column(centralTreeCoords.x.toInt()).take(centralTreeCoords.y.toInt() + 1).reversed()
+            East -> row(centralTreeCoords.y.toInt()).drop(centralTreeCoords.x.toInt())
+            South -> column(centralTreeCoords.x.toInt()).drop(centralTreeCoords.y.toInt())
+            West -> row(centralTreeCoords.y.toInt()).take(centralTreeCoords.x.toInt() + 1).reversed()
         }
 
-    fun sceneInDirection(centralTreeCoords: Coordinates2D, direction2D: Direction2D): Int {
+    fun sceneInDirection(centralTreeCoords: Coordinates2D, direction: CardinalDirection2D): Int {
         val centralTreeHeight = get(centralTreeCoords)
-        val lineWithoutCentralTree = lineInDirection(centralTreeCoords, direction2D).drop(1)
+        val lineWithoutCentralTree = lineInDirection(centralTreeCoords, direction).drop(1)
         val shorterTrees = lineWithoutCentralTree.takeWhile { it < centralTreeHeight }
         val otherTrees = lineWithoutCentralTree.dropWhile { it < centralTreeHeight }
         return if (otherTrees.isEmpty()) {
@@ -72,7 +72,7 @@ class TreeGrid(private val input: String) : Grid2D<Int> {
     }
 
     private fun scenicScore(coords: Coordinates2D): Int =
-        Direction2D.clockwise().map { sceneInDirection(coords, it) }.fold(1) { acc, cur ->
+        CardinalDirection2D.cardinalDirections().map { sceneInDirection(coords, it) }.fold(1) { acc, cur ->
             acc * cur
         }
 

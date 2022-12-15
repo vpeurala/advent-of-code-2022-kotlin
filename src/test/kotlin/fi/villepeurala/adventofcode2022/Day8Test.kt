@@ -50,18 +50,18 @@ class Day8Test {
     @Test
     fun linesInDirections() {
         val centralTree = Coordinates2D(2, 1)
-        assertEquals(listOf(5, 3), treeGrid1.lineInDirection(centralTree, Up))
-        assertEquals(listOf(5, 3, 5, 3), treeGrid1.lineInDirection(centralTree, Down))
-        assertEquals(listOf(5, 1, 2), treeGrid1.lineInDirection(centralTree, Right))
-        assertEquals(listOf(5, 5, 2), treeGrid1.lineInDirection(centralTree, Left))
+        assertEquals(listOf(5, 3), treeGrid1.lineInDirection(centralTree, North))
+        assertEquals(listOf(5, 1, 2), treeGrid1.lineInDirection(centralTree, East))
+        assertEquals(listOf(5, 3, 5, 3), treeGrid1.lineInDirection(centralTree, South))
+        assertEquals(listOf(5, 5, 2), treeGrid1.lineInDirection(centralTree, West))
     }
 
     @Test
     fun scenesInDirections() {
         val centralTree = Coordinates2D(2, 1)
-        assertEquals(1, treeGrid1.sceneInDirection(centralTree, Up))
-        assertEquals(1, treeGrid1.sceneInDirection(centralTree, Left))
-        assertEquals(2, treeGrid1.sceneInDirection(centralTree, Right))
-        assertEquals(2, treeGrid1.sceneInDirection(centralTree, Down))
+        assertEquals(1, treeGrid1.sceneInDirection(centralTree, North))
+        assertEquals(2, treeGrid1.sceneInDirection(centralTree, East))
+        assertEquals(2, treeGrid1.sceneInDirection(centralTree, South))
+        assertEquals(1, treeGrid1.sceneInDirection(centralTree, West))
     }
 }
